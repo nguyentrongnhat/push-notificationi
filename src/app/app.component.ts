@@ -15,6 +15,8 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 export class AppComponent implements OnInit {
 
   public message: any;
+  public messageToken: string = '';
+  public showNoti: boolean = false;
 
   constructor() {
     firebase.initializeApp(firebaseConfig);
@@ -56,6 +58,7 @@ export class AppComponent implements OnInit {
        (currentToken) => {
          if (currentToken) {
            console.log("Hurraaa!!! we got the token.....");
+           this.messageToken = currentToken
            console.log(currentToken);
          } else {
            console.log('No registration token available. Request permission to generate one.');
@@ -68,8 +71,9 @@ export class AppComponent implements OnInit {
   listen() {
     const messaging = getMessaging();
     onMessage(messaging, (payload) => {
+      this.showNoti = true;
       console.log('Message received. ', payload);
-      this.message=payload;
+      this.message = payload;
     });
   }
 }

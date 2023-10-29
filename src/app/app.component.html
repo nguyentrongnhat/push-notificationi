@@ -1,1 +1,10 @@
-<h1>Hello</h1>
+<div class="wrapper">
+  <h1>Test push notification</h1>
+
+  <div *ngIf="messageToken!==''">Message token: {{messageToken}}</div>
+
+  <div class="push-noti" *ngIf="showNoti">
+    <h2 class="title">{{message?.notification?.title}}</h2>
+    <div class="body">{{message?.notification?.body}}</div>
+  </div>
+</div>
